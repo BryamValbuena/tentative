@@ -37,10 +37,19 @@
             border-radius: 6px;
             cursor: pointer;
             font-size: 16px;
+            margin-top: 10px;
         }
 
         button:hover {
             background: #2563eb;
+        }
+
+        .download-btn {
+            background: #10b981;
+        }
+
+        .download-btn:hover {
+            background: #059669;
         }
 
         img {
@@ -58,7 +67,7 @@
 </head>
 <body>
     <div class="container">
-        <h1> Analizador de Sentimientos</h1>
+        <h1>Analizador de Sentimientos</h1>
 
         <form action="/upload" method="post" enctype="multipart/form-data">
             <input type="file" name="file" accept=".xlsx" required><br>
@@ -68,6 +77,13 @@
         {% if grafica %}
             <h2>Resultados</h2>
             <img src="{{ grafica }}" width="500">
+
+            {% if archivo_resultado %}
+                <br>
+                <a href="{{ url_for('descargar', nombre=archivo_resultado) }}">
+                    <button class="download-btn">Descargar Excel con Resultados</button>
+                </a>
+            {% endif %}
         {% endif %}
     </div>
 </body>
